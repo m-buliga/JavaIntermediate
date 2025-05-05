@@ -1,5 +1,6 @@
 package Tests;
 
+import HelperMethods.ElementsMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +10,7 @@ import org.testng.annotations.Test;
 
 public class FramesTest {
     public WebDriver driver;
+    public ElementsMethods elementsMethods;
 
     @Test
     public void automationMethod() {
@@ -21,12 +23,14 @@ public class FramesTest {
         // maximize browser
         driver.manage().window().maximize();
 
+        elementsMethods = new ElementsMethods(driver);
+
         WebElement alertsFrameWindowsField = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", alertsFrameWindowsField);
-        alertsFrameWindowsField.click();
+        elementsMethods.clickElement(alertsFrameWindowsField);
 
         WebElement framesField = driver.findElement(By.xpath("//span[text()='Frames']"));
-        framesField.click();
+        elementsMethods.clickElement(framesField);
 
         WebElement frame1Field = driver.findElement(By.id("frame1"));
         driver.switchTo().frame(frame1Field);

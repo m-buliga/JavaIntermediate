@@ -1,5 +1,7 @@
 package Tests;
 
+import HelperMethods.AlertsMethods;
+import HelperMethods.ElementsMethods;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,6 +16,8 @@ import java.time.Duration;
 
 public class AlertsTest {
     public WebDriver driver;
+    public ElementsMethods elementsMethods;
+    public AlertsMethods alertsMethods;
 
     @Test
     public void automationMethod () {
@@ -29,40 +33,37 @@ public class AlertsTest {
         // maximize browser
         driver.manage().window().maximize();
 
+        elementsMethods = new ElementsMethods(driver);
+        alertsMethods = new AlertsMethods(driver);
+
         WebElement alertsFrameWindowsField = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", alertsFrameWindowsField);
-        alertsFrameWindowsField.click();
+        elementsMethods.clickElement(alertsFrameWindowsField);
 
         WebElement alertsField = driver.findElement(By.xpath("//span[text()='Alerts']"));
-        alertsField.click();
+        elementsMethods.clickElement(alertsField);
 
         WebElement alertOkElement = driver.findElement(By.id("alertButton"));
-        alertOkElement.click();
+        elementsMethods.clickElement(alertOkElement);
 
         // ne mutam cu focusul pe alerta
-        Alert alertOk = driver.switchTo().alert();
-        alertOk.accept();
+        alertsMethods.interactWithAlertsOk();
 
         WebElement alertDelayElement = driver.findElement(By.id("timerAlertButton"));
-        alertDelayElement.click();
+        elementsMethods.clickElement(alertDelayElement);
 
-        // definim un wait explicit care asteapta dupa alerta
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert alertDelay = driver.switchTo().alert();
-        alertDelay.accept();
+        // definim un wait explicit care asteapta dupa alerta -> schimbat cu metoda
+        alertsMethods.interactWithDelayAlert();
 
         WebElement alertConfirmationElement = driver.findElement(By.id("confirmButton"));
-        alertConfirmationElement.click();
-        Alert alertConfirmation = driver.switchTo().alert();
-        alertConfirmation.dismiss();
+        elementsMethods.clickElement(alertConfirmationElement);
+        alertsMethods.interactWithButtonsConfirmationPrompt();
+
 
         WebElement alertPromptElement = driver.findElement(By.id("promtButton"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", alertPromptElement);
-        alertPromptElement.click();
-        Alert alertPrompt = driver.switchTo().alert();
-        alertPrompt.sendKeys("My name");
-        alertPrompt.accept();
+        elementsMethods.clickElement(alertPromptElement);
+        alertsMethods.interactWithInputConfirmationPrompt("My name");
 
     }
 }
