@@ -1,6 +1,9 @@
 package Tests;
 
 import HelperMethods.ElementsMethods;
+import HelperMethods.JavaScriptHelperMethods;
+import Pages.CommonPage;
+import Pages.HomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -8,9 +11,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
+
 public class FramesTest {
     public WebDriver driver;
     public ElementsMethods elementsMethods;
+    public JavaScriptHelperMethods javaScriptHelperMethods;
+    public HomePage homePage;
+    public CommonPage commonPage;
 
     @Test
     public void automationMethod() {
@@ -24,13 +31,12 @@ public class FramesTest {
         driver.manage().window().maximize();
 
         elementsMethods = new ElementsMethods(driver);
+        javaScriptHelperMethods = new JavaScriptHelperMethods(driver);
+        homePage = new HomePage(driver);
+        commonPage = new CommonPage(driver);
 
-        WebElement alertsFrameWindowsField = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", alertsFrameWindowsField);
-        elementsMethods.clickElement(alertsFrameWindowsField);
-
-        WebElement framesField = driver.findElement(By.xpath("//span[text()='Frames']"));
-        elementsMethods.clickElement(framesField);
+        homePage.goToDesiredMenu("Alerts, Frame & Windows");
+        commonPage.goToDesiredSubMenu("Frames");
 
         WebElement frame1Field = driver.findElement(By.id("frame1"));
         driver.switchTo().frame(frame1Field);
