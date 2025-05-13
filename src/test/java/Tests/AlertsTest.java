@@ -2,15 +2,15 @@ package Tests;
 
 import HelperMethods.AlertsMethods;
 import HelperMethods.ElementsMethods;
-import org.openqa.selenium.Alert;
+import HelperMethods.JavaScriptHelperMethods;
+import Pages.CommonPage;
+import Pages.HomePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
 import java.time.Duration;
 
 
@@ -18,9 +18,12 @@ public class AlertsTest {
     public WebDriver driver;
     public ElementsMethods elementsMethods;
     public AlertsMethods alertsMethods;
+    public JavaScriptHelperMethods javaScriptHelperMethods;
+    public HomePage homePage;
+    public CommonPage commonPage;
 
     @Test
-    public void automationMethod () {
+    public void automationMethod() {
         // deschidem un browser chrome
         driver = new ChromeDriver();
 
@@ -35,13 +38,12 @@ public class AlertsTest {
 
         elementsMethods = new ElementsMethods(driver);
         alertsMethods = new AlertsMethods(driver);
+        javaScriptHelperMethods = new JavaScriptHelperMethods(driver);
+        homePage = new HomePage(driver);
+        commonPage = new CommonPage(driver);
 
-        WebElement alertsFrameWindowsField = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", alertsFrameWindowsField);
-        elementsMethods.clickElement(alertsFrameWindowsField);
-
-        WebElement alertsField = driver.findElement(By.xpath("//span[text()='Alerts']"));
-        elementsMethods.clickElement(alertsField);
+        homePage.goToDesiredMenu("Alerts, Frame & Windows");
+        commonPage.goToDesiredSubMenu("Alerts");
 
         WebElement alertOkElement = driver.findElement(By.id("alertButton"));
         elementsMethods.clickElement(alertOkElement);
@@ -56,12 +58,13 @@ public class AlertsTest {
         alertsMethods.interactWithDelayAlert();
 
         WebElement alertConfirmationElement = driver.findElement(By.id("confirmButton"));
+        javaScriptHelperMethods.scrollToElement(alertConfirmationElement);
         elementsMethods.clickElement(alertConfirmationElement);
         alertsMethods.interactWithButtonsConfirmationPrompt();
 
 
         WebElement alertPromptElement = driver.findElement(By.id("promtButton"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", alertPromptElement);
+        javaScriptHelperMethods.scrollToElement(alertPromptElement);
         elementsMethods.clickElement(alertPromptElement);
         alertsMethods.interactWithInputConfirmationPrompt("My name");
 

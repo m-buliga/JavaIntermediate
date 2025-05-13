@@ -1,20 +1,25 @@
 package Tests;
 
 import HelperMethods.ElementsMethods;
+import HelperMethods.JavaScriptHelperMethods;
+import Pages.CommonPage;
+import Pages.HomePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
+
 
 public class WebTableTest {
     public WebDriver driver;
     public ElementsMethods elementsMethods;
+    public JavaScriptHelperMethods javaScriptHelperMethods;
+    public HomePage homePage;
+    public CommonPage commonPage;
 
     @Test
-    public void automationMethod () {
+    public void automationMethod() {
         // deschidem un browser chrome
         driver = new ChromeDriver();
 
@@ -25,14 +30,12 @@ public class WebTableTest {
         driver.manage().window().maximize();
 
         elementsMethods = new ElementsMethods(driver);
+        javaScriptHelperMethods = new JavaScriptHelperMethods(driver);
+        homePage = new HomePage(driver);
+        commonPage = new CommonPage(driver);
 
-        // declaram un element, scroll pana la el si click
-        WebElement elementsField = driver.findElement(By.xpath("//h5[text()='Elements']"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elementsField);
-        elementsMethods.clickElement(elementsField);
-
-        WebElement webTableField = driver.findElement(By.xpath("//span[text()='Web Tables']"));
-        elementsMethods.clickElement(webTableField);
+        homePage.goToDesiredMenu("Elements");
+        commonPage.goToDesiredSubMenu("Web Tables");
 
         WebElement addButton = driver.findElement(By.id("addNewRecordButton"));
         elementsMethods.clickElement(addButton);
@@ -56,7 +59,7 @@ public class WebTableTest {
         elementsMethods.fillElement(departmentInput, "Testing");
 
         WebElement submitButton = driver.findElement(By.id("submit"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", submitButton);
+        javaScriptHelperMethods.scrollToElement(submitButton);
         elementsMethods.clickElement(submitButton);
     }
 }
