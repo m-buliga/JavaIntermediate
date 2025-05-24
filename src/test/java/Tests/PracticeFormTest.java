@@ -29,9 +29,11 @@ public class PracticeFormTest extends ShareData {
         practiceFormPage = new PracticeFormPage(getDriver());
 
         homePage.goToDesiredMenu("Forms");
+
         commonPage.goToDesiredSubMenu("Practice Form");
 
         practiceFormPage.fillInFirstInputs("Olivia", "Bennet", "olivia.b@mail.com", "5512333", "Drake Rd, 48725, London");
+
         practiceFormPage.selectGender("Female");
         // practiceFormPage.fillSubject("Maths");
 
