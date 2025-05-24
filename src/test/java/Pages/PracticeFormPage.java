@@ -1,91 +1,81 @@
 package Pages;
 
-import HelperMethods.ElementsMethods;
-import HelperMethods.JavaScriptHelperMethods;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PracticeFormPage {
-    WebDriver driver;
-    ElementsMethods elementsMethods;
-    JavaScriptHelperMethods javaScriptHelperMethods;
+
+public class PracticeFormPage extends CommonPage {
 
     public PracticeFormPage(WebDriver driver) {
-        this.driver = driver;
-        this.elementsMethods = new ElementsMethods(driver);
-        this.javaScriptHelperMethods = new JavaScriptHelperMethods(driver);
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(id = "firstName")
-    WebElement firstNameElement;
+    private WebElement firstNameElement;
 
     @FindBy(id = "lastName")
-    WebElement lastNameElement;
+    private WebElement lastNameElement;
 
     @FindBy(id = "userEmail")
-    WebElement emailElement;
+    private WebElement emailElement;
 
     @FindBy(xpath = "//label[@for='gender-radio-1']")
-    WebElement maleGenderElement;
+    private WebElement maleGenderElement;
 
     @FindBy(xpath = "//label[@for='gender-radio-2']")
-    WebElement femaleGenderElement;
+    private WebElement femaleGenderElement;
 
     @FindBy(xpath = "//label[@for='gender-radio-3']")
-    WebElement otherGenderElement;
+    private WebElement otherGenderElement;
 
     @FindBy(id = "userNumber")
-    WebElement mobileNumberElement;
+    private WebElement mobileNumberElement;
 
     @FindBy(id = "dateOfBirthInput")
-    WebElement dateOfBirthElement;
+    private WebElement dateOfBirthElement;
 
     @FindBy(xpath = "//div[contains(@class, 'react-datepicker__day') and @tabindex='0']")
-    WebElement dayElement;
+    private WebElement dayElement;
 
     //@FindBy(xpath = "//div[@id='subjectsContainer']")
     //WebElement subjectsElement;
 
     @FindBy(id = "subjectsInput")
-    WebElement subjectsElement;
+    private WebElement subjectsElement;
 
     @FindBy(xpath = "//label[@for='hobbies-checkbox-1']")
-    WebElement sportsHobbiesElement;
+    private WebElement sportsHobbiesElement;
 
     @FindBy(xpath = "//label[@for='hobbies-checkbox-2']")
-    WebElement readingHobbiesElement;
+    private WebElement readingHobbiesElement;
 
     @FindBy(xpath = "//label[@for='hobbies-checkbox-3']")
-    WebElement moviesHobbiesElement;
+    private WebElement moviesHobbiesElement;
 
     @FindBy(id = "uploadPicture")
-    WebElement pictureElement;
+    private WebElement pictureElement;
 
     @FindBy(id = "currentAddress")
-    WebElement addressElement;
+    private WebElement addressElement;
 
     @FindBy(xpath = "(//div[@class=' css-yk16xz-control'])")
-    WebElement stateElement;
+    private WebElement stateElement;
 
     @FindBy(id = "react-select-3-input")
-    WebElement stateInputElement;
+    private WebElement stateInputElement;
 
     @FindBy(xpath = "(//div[@class=' css-yk16xz-control'])")
-    WebElement cityElement;
+    private WebElement cityElement;
 
     @FindBy(id = "react-select-4-input")
-    WebElement cityInputElement;
+    private WebElement cityInputElement;
 
     @FindBy(id = "submit")
-    WebElement submitButton;
-
-
+    private WebElement submitButton;
 
 
     public void fillInFirstInputs(String firstName, String lastName, String email, String mobileNumber, String address) {
@@ -97,7 +87,7 @@ public class PracticeFormPage {
     }
 
     public void selectGender(String gender) {
-        switch (gender){
+        switch (gender) {
             case "Male":
                 elementsMethods.clickElement(maleGenderElement);
                 break;
@@ -147,7 +137,7 @@ public class PracticeFormPage {
         elementsMethods.uploadFile(pictureElement, "C:\\Endava\\Demo QA Picture.png");
     }
 
-    public void submitForm(){
+    public void submitForm() {
         elementsMethods.clickElement(submitButton);
     }
 
