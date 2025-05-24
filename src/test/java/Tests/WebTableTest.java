@@ -4,15 +4,14 @@ import HelperMethods.ElementsMethods;
 import HelperMethods.JavaScriptHelperMethods;
 import Pages.CommonPage;
 import Pages.HomePage;
+import ShareData.ShareData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
 
-public class WebTableTest {
-    public WebDriver driver;
+public class WebTableTest extends ShareData {
+
     public ElementsMethods elementsMethods;
     public JavaScriptHelperMethods javaScriptHelperMethods;
     public HomePage homePage;
@@ -20,45 +19,37 @@ public class WebTableTest {
 
     @Test
     public void automationMethod() {
-        // deschidem un browser chrome
-        driver = new ChromeDriver();
 
-        // accesam o pagina web
-        driver.get("https://demoqa.com/");
-
-        // maximize browser
-        driver.manage().window().maximize();
-
-        elementsMethods = new ElementsMethods(driver);
-        javaScriptHelperMethods = new JavaScriptHelperMethods(driver);
-        homePage = new HomePage(driver);
-        commonPage = new CommonPage(driver);
+        elementsMethods = new ElementsMethods(getDriver());
+        javaScriptHelperMethods = new JavaScriptHelperMethods(getDriver());
+        homePage = new HomePage(getDriver());
+        commonPage = new CommonPage(getDriver());
 
         homePage.goToDesiredMenu("Elements");
         commonPage.goToDesiredSubMenu("Web Tables");
 
-        WebElement addButton = driver.findElement(By.id("addNewRecordButton"));
+        WebElement addButton = getDriver().findElement(By.id("addNewRecordButton"));
         elementsMethods.clickElement(addButton);
 
-        WebElement firstNameInput = driver.findElement(By.id("firstName"));
+        WebElement firstNameInput = getDriver().findElement(By.id("firstName"));
         elementsMethods.fillElement(firstNameInput, "Kate");
 
-        WebElement lastNameInput = driver.findElement(By.id("lastName"));
+        WebElement lastNameInput = getDriver().findElement(By.id("lastName"));
         elementsMethods.fillElement(lastNameInput, "Smith");
 
-        WebElement emailInput = driver.findElement(By.id("userEmail"));
+        WebElement emailInput = getDriver().findElement(By.id("userEmail"));
         elementsMethods.fillElement(emailInput, "ksmith@gmail.com");
 
-        WebElement ageInput = driver.findElement(By.id("age"));
+        WebElement ageInput = getDriver().findElement(By.id("age"));
         elementsMethods.fillElement(ageInput, "20");
 
-        WebElement salaryInput = driver.findElement(By.id("salary"));
+        WebElement salaryInput = getDriver().findElement(By.id("salary"));
         elementsMethods.fillElement(salaryInput, "25000");
 
-        WebElement departmentInput = driver.findElement(By.id("department"));
+        WebElement departmentInput = getDriver().findElement(By.id("department"));
         elementsMethods.fillElement(departmentInput, "Testing");
 
-        WebElement submitButton = driver.findElement(By.id("submit"));
+        WebElement submitButton = getDriver().findElement(By.id("submit"));
         javaScriptHelperMethods.scrollToElement(submitButton);
         elementsMethods.clickElement(submitButton);
     }

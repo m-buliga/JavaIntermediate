@@ -4,16 +4,15 @@ import HelperMethods.ElementsMethods;
 import HelperMethods.JavaScriptHelperMethods;
 import Pages.CommonPage;
 import Pages.HomePage;
+import ShareData.ShareData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
 
-public class FramesTest {
-    public WebDriver driver;
+public class FramesTest extends ShareData {
+
     public ElementsMethods elementsMethods;
     public JavaScriptHelperMethods javaScriptHelperMethods;
     public HomePage homePage;
@@ -21,34 +20,26 @@ public class FramesTest {
 
     @Test
     public void automationMethod() {
-        // deschidem un browser chrome
-        driver = new ChromeDriver();
 
-        // accesam o pagina web
-        driver.get("https://demoqa.com/");
-
-        // maximize browser
-        driver.manage().window().maximize();
-
-        elementsMethods = new ElementsMethods(driver);
-        javaScriptHelperMethods = new JavaScriptHelperMethods(driver);
-        homePage = new HomePage(driver);
-        commonPage = new CommonPage(driver);
+        elementsMethods = new ElementsMethods(getDriver());
+        javaScriptHelperMethods = new JavaScriptHelperMethods(getDriver());
+        homePage = new HomePage(getDriver());
+        commonPage = new CommonPage(getDriver());
 
         homePage.goToDesiredMenu("Alerts, Frame & Windows");
         commonPage.goToDesiredSubMenu("Frames");
 
-        WebElement frame1Field = driver.findElement(By.id("frame1"));
-        driver.switchTo().frame(frame1Field);
-        WebElement sampleFrameHeadingElement = driver.findElement(By.id("sampleHeading"));
+        WebElement frame1Field = getDriver().findElement(By.id("frame1"));
+        getDriver().switchTo().frame(frame1Field);
+        WebElement sampleFrameHeadingElement = getDriver().findElement(By.id("sampleHeading"));
         System.out.println("Textul din noul tab este: " + sampleFrameHeadingElement.getText());
 
         // mergem cu focusul pe pagina originala
-        driver.switchTo().defaultContent();
+        getDriver().switchTo().defaultContent();
 
-        WebElement frame2Field = driver.findElement(By.id("frame2"));
-        driver.switchTo().frame(frame2Field);
+        WebElement frame2Field = getDriver().findElement(By.id("frame2"));
+        getDriver().switchTo().frame(frame2Field);
 
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 200)");
+        ((JavascriptExecutor) getDriver()).executeScript("window.scrollBy(0, 200)");
     }
 }
