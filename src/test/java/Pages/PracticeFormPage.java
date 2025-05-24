@@ -3,6 +3,7 @@ package Pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,7 +87,7 @@ public class PracticeFormPage extends CommonPage {
     }
 
     public void selectGender(String gender) {
-        switch (gender){
+        switch (gender) {
             case "Male":
                 elementsMethods.clickElement(maleGenderElement);
                 break;
@@ -136,7 +137,7 @@ public class PracticeFormPage extends CommonPage {
         elementsMethods.uploadFile(pictureElement, "C:\\Endava\\Demo QA Picture.png");
     }
 
-    public void submitForm(){
+    public void submitForm() {
         elementsMethods.clickElement(submitButton);
     }
 
