@@ -20,6 +20,14 @@ public class Student  extends Persoana {
         System.out.println("Studentul are bursa? " + bursa);
     }
 
+    // polimorfism dinamic
+    public void mananca() {
+        System.out.println("Studentul mananca atunci cand are timp.");
+
+        // folosind keyword 'super' apelam metoda din parinte
+        super.mananca();
+    }
+
     public void absolvire() {
         System.out.println("Studentul cu numele " + getNume() + " si prenumele " + getPrenume() + " a absolvit.");
     }

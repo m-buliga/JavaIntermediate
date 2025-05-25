@@ -20,6 +20,24 @@ public class Angajat extends Persoana {
         System.out.println("Numarul zilelor de concediu este: " + zileConcediu);
     }
 
+    // suprascriem metoda din parinte (polimorfism dinamic)
+    public void mananca() {
+        System.out.println("Angajatul mananca atunci cand are pauza de masa.");
+    }
+
+    // polimorfism static - o metoda cu aceeasi denumire, dar care se diferentiaza prin tipul de parametri sau prin numarul de parametri
+    public void marire() {
+        System.out.println("Nu este buget de mariri.");
+    }
+
+    public void marire(Integer procent) {
+        System.out.println("Angajatul a primit o marire de salariu cu " + procent + " %.");
+    }
+
+    public void marire(String grad) {
+        System.out.println("Angajatul a primit gradul " + grad + ".");
+    }
+
     public void promovare() {
         System.out.println("Angajatul cu numele " + getNume() + " a fost promovat.");
     }
