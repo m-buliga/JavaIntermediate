@@ -16,4 +16,8 @@ public class JavaScriptHelperMethods {
     public void scrollToElement(WebElement element) {
         jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
     }
+
+    public void scrollBy(int x, int y) {
+        jsExecutor.executeScript("window.scrollBy(arguments[0], arguments[1]);", x, y);
+    }
 }

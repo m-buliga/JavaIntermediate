@@ -10,9 +10,9 @@ import java.util.List;
 
 
 public class CommonPage {
-    WebDriver driver;
-    ElementsMethods elementsMethods;
-    JavaScriptHelperMethods javaScriptHelperMethods;
+    protected WebDriver driver;
+    protected ElementsMethods elementsMethods;
+    protected JavaScriptHelperMethods javaScriptHelperMethods;
 
     public CommonPage(WebDriver driver) {
         this.driver = driver;
