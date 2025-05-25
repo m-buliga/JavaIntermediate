@@ -47,7 +47,7 @@ public class WebTablePage extends CommonPage {
         elementsMethods.fillElement(departmentInput, department);
     }
     public void submitRegistrationForm() {
-        javaScriptHelperMethods.scrollToElement(submitButton);
+        javaScriptHelperMethods.scrollBy(0, 300);
         elementsMethods.clickElement(submitButton);
     }
 
