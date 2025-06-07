@@ -48,14 +48,14 @@ public class AlertsPage extends CommonPage {
     }
 
     public void interactWithButtonsConfirmationPrompt() {
-        javaScriptHelperMethods.scrollToElement(alertConfirmationElement);
+        javaScriptHelperMethods.scrollToElement(driver, alertConfirmationElement);
         elementsMethods.clickElement(alertConfirmationElement);
         Alert alertConfirmation = driver.switchTo().alert();
         alertConfirmation.dismiss();
     }
 
     public void interactWithInputConfirmationPrompt(String value) {
-        javaScriptHelperMethods.scrollToElement(alertPromptElement);
+        javaScriptHelperMethods.scrollToElement(driver, alertPromptElement);
         elementsMethods.clickElement(alertPromptElement);
         Alert alertPrompt = driver.switchTo().alert();
         alertPrompt.sendKeys(value);

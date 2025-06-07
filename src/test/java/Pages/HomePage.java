@@ -23,7 +23,7 @@ public class HomePage extends CommonPage {
 
     public void goToDesiredMenu(String menu) {
         WebElement element = elementsMethods.findElementFromListByText(elements, menu);
-        javaScriptHelperMethods.scrollToElement(element);
+        javaScriptHelperMethods.scrollToElement(driver, element);
         elementsMethods.clickElement(element);
     }
 }

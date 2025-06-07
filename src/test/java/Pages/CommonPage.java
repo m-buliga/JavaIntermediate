@@ -26,7 +26,7 @@ public class CommonPage {
 
     public void goToDesiredSubMenu(String submenu) {
         WebElement element = elementsMethods.findElementFromListByText(elements, submenu);
-        javaScriptHelperMethods.scrollToElement(element);
+        javaScriptHelperMethods.scrollToElement(driver, element);
         elementsMethods.clickElement(element);
     }
 }
