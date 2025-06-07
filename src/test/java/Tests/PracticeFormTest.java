@@ -2,13 +2,13 @@ package Tests;
 
 import HelperMethods.ElementsMethods;
 import HelperMethods.JavaScriptHelperMethods;
+import ObjectData.PracticeFormObject;
 import Pages.CommonPage;
 import Pages.HomePage;
 import Pages.PracticeFormPage;
+import PropertyUtility.PropertyUtility;
 import ShareData.ShareData;
 import org.testng.annotations.Test;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class PracticeFormTest extends ShareData {
@@ -18,6 +18,8 @@ public class PracticeFormTest extends ShareData {
     public HomePage homePage;
     public CommonPage commonPage;
     public PracticeFormPage practiceFormPage;
+    public PropertyUtility propertyUtility;
+    public PracticeFormObject practiceFormObject;
 
     @Test
     public void automationMethod() {
@@ -27,34 +29,28 @@ public class PracticeFormTest extends ShareData {
         homePage = new HomePage(getDriver());
         commonPage = new CommonPage(getDriver());
         practiceFormPage = new PracticeFormPage(getDriver());
+        propertyUtility = new PropertyUtility("PracticeFormTest");
+        practiceFormObject = new PracticeFormObject(propertyUtility.getData());
 
         homePage.goToDesiredMenu("Forms");
 
         commonPage.goToDesiredSubMenu("Practice Form");
 
-        practiceFormPage.fillInFirstInputs("Olivia", "Bennet", "olivia.b@mail.com", "5512333", "Drake Rd, 48725, London");
+        practiceFormPage.fillInFirstInputs(practiceFormObject);
 
-        practiceFormPage.selectGender("Female");
-        // practiceFormPage.fillSubject("Maths");
+        practiceFormPage.selectGender(practiceFormObject);
 
-        List<String> subject = new ArrayList<>();
-        subject.add("Maths");
-        subject.add("English");
-        practiceFormPage.fillSubjectWithList(subject);
+        practiceFormPage.fillSubjectWithList(practiceFormObject);
 
-        List<String> hobbies = new ArrayList<>();
-        // hobbies.add("Sports");
-        hobbies.add("Reading");
-        hobbies.add("Music");
-        practiceFormPage.selectHobbies(hobbies);
+        practiceFormPage.selectHobbies(practiceFormObject);
 
         practiceFormPage.uploadPicture();
 
         practiceFormPage.selectCalendarDate();
 
-        practiceFormPage.selectState("NCR");
+        practiceFormPage.selectState(practiceFormObject);
 
-        practiceFormPage.selectCity("Noida");
+        practiceFormPage.selectCity(practiceFormObject);
 
         practiceFormPage.submitForm();
     }
