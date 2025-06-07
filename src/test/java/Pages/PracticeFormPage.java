@@ -3,6 +3,7 @@ package Pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -133,7 +134,11 @@ public class PracticeFormPage extends CommonPage {
     }
 
     public void uploadPicture() {
-        elementsMethods.uploadFile(pictureElement, "C:\\Endava\\Demo QA Picture.png");
+        File file = new File(getClass().getClassLoader()
+                .getResource("uploadFiles/Demo_QA_Picture.png")
+                .getFile());
+
+        elementsMethods.uploadFile(pictureElement, file.getAbsolutePath());
     }
 
     public void submitForm() {

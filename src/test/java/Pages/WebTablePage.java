@@ -35,6 +35,7 @@ public class WebTablePage extends CommonPage {
     private WebElement submitButton;
 
     public void openRegistrationForm() {
+        javaScriptHelperMethods.scrollToElement(addButton);
         elementsMethods.clickElement(addButton);
     }
 

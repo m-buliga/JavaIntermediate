@@ -4,6 +4,9 @@
 name: Maven Package
 
 on:
+  schedule:
+    # valoarea: minut ora milisecunde inetrvalul de zile cand vreau sa ruleze
+    - cron: '00 23 * * 1-5'
   workflow_dispatch:
     inputs:
       suite:
