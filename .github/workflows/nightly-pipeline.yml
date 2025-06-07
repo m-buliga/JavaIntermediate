@@ -1,22 +1,22 @@
 # This workflow will build a package using Maven and then publish it to GitHub packages when a release is created
 # For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path
 
-name: Maven Package
+name: Nightly Pipeline
 
 on:
   schedule:
-    # valoarea: minut ora milisecunde inetrvalul de zile cand vreau sa ruleze
+    # valoarea: minut ora milisecunde?? intervalul de zile cand vreau sa ruleze
     - cron: '00 23 * * 1-5'
   workflow_dispatch:
-    inputs:
-      suite:
-        description: 'Choose automation suite: RegressionSuite, SmokeSuite, SanitySuite'
-        required: true
-        default: RegressionSuite
-      browser:
-        description: "Choose browser suite: chrome, edge, firefox"
-        required: true
-        default: chrome
+     inputs:
+       suite:
+         description: 'Choose automation suite: RegressionSuite, SmokeSuite, SanitySuite'
+         required: true
+         default: RegressionSuite
+       browser:
+         description: "Choose browser suite: chrome, edge, firefox"
+         required: true
+         default: chrome
 
 jobs:
   build:
