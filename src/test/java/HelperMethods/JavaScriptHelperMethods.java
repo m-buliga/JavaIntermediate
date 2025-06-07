@@ -26,18 +26,4 @@ public class JavaScriptHelperMethods {
         jsExecutor.executeScript("window.scrollBy(arguments[0], arguments[1]);", x, y);
     }
 
-    public WebElement waitForElement(WebDriver driver, WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement clickable = wait.until(ExpectedConditions.elementToBeClickable(element));
-
-        // Get and optionally log the coordinates
-        Point location = clickable.getLocation();
-        int x = location.getX();
-        int y = location.getY();
-
-        System.out.println("Element coordinates: X=" + x + ", Y=" + y);
-
-        return clickable;
-    }
-
 }
