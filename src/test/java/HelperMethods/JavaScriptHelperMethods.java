@@ -1,7 +1,7 @@
 package HelperMethods;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -28,6 +28,16 @@ public class JavaScriptHelperMethods {
 
     public WebElement waitForElement(WebDriver driver, WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        return wait.until(ExpectedConditions.elementToBeClickable(element));
+        WebElement clickable = wait.until(ExpectedConditions.elementToBeClickable(element));
+
+        // Get and optionally log the coordinates
+        Point location = clickable.getLocation();
+        int x = location.getX();
+        int y = location.getY();
+
+        System.out.println("Element coordinates: X=" + x + ", Y=" + y);
+
+        return clickable;
     }
+
 }
