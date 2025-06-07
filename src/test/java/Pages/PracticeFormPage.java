@@ -1,5 +1,6 @@
 package Pages;
 
+import ObjectData.PracticeFormObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -54,7 +55,7 @@ public class PracticeFormPage extends CommonPage {
     private WebElement readingHobbiesElement;
 
     @FindBy(xpath = "//label[@for='hobbies-checkbox-3']")
-    private WebElement moviesHobbiesElement;
+    private WebElement musicHobbiesElement;
 
     @FindBy(id = "uploadPicture")
     private WebElement pictureElement;
@@ -78,16 +79,16 @@ public class PracticeFormPage extends CommonPage {
     private WebElement submitButton;
 
 
-    public void fillInFirstInputs(String firstName, String lastName, String email, String mobileNumber, String address) {
-        elementsMethods.fillElement(firstNameElement, firstName);
-        elementsMethods.fillElement(lastNameElement, lastName);
-        elementsMethods.fillElement(emailElement, email);
-        elementsMethods.fillElement(mobileNumberElement, mobileNumber);
-        elementsMethods.fillElement(addressElement, address);
+    public void fillInFirstInputs(PracticeFormObject practiceFormObject) {
+        elementsMethods.fillElement(firstNameElement, practiceFormObject.getFirstName());
+        elementsMethods.fillElement(lastNameElement, practiceFormObject.getLastName());
+        elementsMethods.fillElement(emailElement, practiceFormObject.getEmail());
+        elementsMethods.fillElement(mobileNumberElement, practiceFormObject.getMobileNumber());
+        elementsMethods.fillElement(addressElement, practiceFormObject.getAddress());
     }
 
-    public void selectGender(String gender) {
-        switch (gender) {
+    public void selectGender(PracticeFormObject practiceFormObject) {
+        switch (practiceFormObject.getGender()) {
             case "Male":
                 elementsMethods.clickElement(maleGenderElement);
                 break;
@@ -105,18 +106,18 @@ public class PracticeFormPage extends CommonPage {
         elementsMethods.fillWithActions(subjectsElement, subject);
     }
 
-    public void fillSubjectWithList(List<String> list) {
+    public void fillSubjectWithList(PracticeFormObject practiceFormObject) {
         elementsMethods.clickElement(subjectsElement);
-        elementsMethods.fillMultipleValues(subjectsElement, list);
+        elementsMethods.fillMultipleValues(subjectsElement, practiceFormObject.getSubjects());
     }
 
-    public void selectHobbies(List<String> hobbies) {
+    public void selectHobbies(PracticeFormObject practiceFormObject) {
         List<WebElement> hobbiesElement = new ArrayList<>();
         hobbiesElement.add(sportsHobbiesElement);
         hobbiesElement.add(readingHobbiesElement);
-        hobbiesElement.add(moviesHobbiesElement);
+        hobbiesElement.add(musicHobbiesElement);
 
-        elementsMethods.clickMultipleValues(hobbiesElement, hobbies);
+        elementsMethods.clickMultipleValues(hobbiesElement, practiceFormObject.getHobbies());
     }
 
     public void selectCalendarDate() {
@@ -124,13 +125,13 @@ public class PracticeFormPage extends CommonPage {
         elementsMethods.clickElement(dayElement);
     }
 
-    public void selectState(String state) {
+    public void selectState(PracticeFormObject practiceFormObject) {
         javaScriptHelperMethods.scrollToElement(driver, stateElement);
-        elementsMethods.selectDropDownValue(stateElement, stateInputElement, state);
+        elementsMethods.selectDropDownValue(stateElement, stateInputElement, practiceFormObject.getState());
     }
 
-    public void selectCity(String city) {
-        elementsMethods.selectDropDownValue(cityElement, cityInputElement, city);
+    public void selectCity(PracticeFormObject practiceFormObject) {
+        elementsMethods.selectDropDownValue(cityElement, cityInputElement, practiceFormObject.getCity());
     }
 
     public void uploadPicture() {
