@@ -37,8 +37,8 @@ public class BrowserWindowPage extends CommonPage {
     }
 
     public void interactWithWindow() {
+        javaScriptHelperMethods.waitForElement(driver, newWindowButton);
         javaScriptHelperMethods.scrollToElement(newWindowButton);
-        System.out.println("SCROLLED");
         elementsMethods.clickElement(newWindowButton);
         List<String> windowList = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(windowList.get(1));
