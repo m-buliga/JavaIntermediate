@@ -2,6 +2,7 @@ package ObjectData;
 
 import java.util.HashMap;
 
+
 public class WebTableObject {
     private String firstName;
     private String lastName;
