@@ -8,7 +8,7 @@ import java.io.File;
 public class ConfigFile {
 
     // facem o metoda generica pt a deserializa xml file si sa returneze partea pe care o doresc
-    // metoda generica =
+    // metoda generica =>
     public static <T> T createConfigNode(Class<T> klass) {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(klass);

@@ -1,5 +1,7 @@
 package Pages;
 
+import ObjectData.PracticeFormObject;
+import ObjectData.WebTableObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -39,13 +41,13 @@ public class WebTablePage extends CommonPage {
         elementsMethods.clickElement(addButton);
     }
 
-    public void fillInAllDetails(String firstName, String lastName, String email, String age, String salary, String department) {
-        elementsMethods.fillElement(firstNameInput, firstName);
-        elementsMethods.fillElement(lastNameInput, lastName);
-        elementsMethods.fillElement(emailInput, email);
-        elementsMethods.fillElement(ageInput, age);
-        elementsMethods.fillElement(salaryInput, salary);
-        elementsMethods.fillElement(departmentInput, department);
+    public void fillInAllDetails(WebTableObject webTableObject) {
+        elementsMethods.fillElement(firstNameInput, webTableObject.getFirstName());
+        elementsMethods.fillElement(lastNameInput, webTableObject.getLastName());
+        elementsMethods.fillElement(emailInput, webTableObject.getEmail());
+        elementsMethods.fillElement(ageInput, webTableObject.getAge());
+        elementsMethods.fillElement(salaryInput, webTableObject.getSalary());
+        elementsMethods.fillElement(departmentInput, webTableObject.getDepartment());
     }
     public void submitRegistrationForm() {
         javaScriptHelperMethods.scrollBy(0, 300);
