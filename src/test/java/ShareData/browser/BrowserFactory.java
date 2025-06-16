@@ -15,8 +15,6 @@ public class BrowserFactory {
         String ciCd = System.getProperty("ciCd");
         String browser = System.getProperty("browser").toLowerCase(Locale.ROOT);
 
-        System.out.println("HERE!!" + browser);
-
         ConfigurationNode configurationNode = ConfigFile.createConfigNode(ConfigurationNode.class);
 
         if (Boolean.parseBoolean(ciCd)) {

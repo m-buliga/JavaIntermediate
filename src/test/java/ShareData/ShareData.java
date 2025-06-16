@@ -1,14 +1,8 @@
 package ShareData;
 
+import Logger.LoggerUtility;
 import ShareData.browser.BrowserFactory;
-import configFile.ConfigFile;
-import configFile.configNode.ConfigurationNode;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-
-import java.time.Duration;
 
 
 public class ShareData {
@@ -19,13 +13,13 @@ public class ShareData {
         return driver;
     }
 
-    @BeforeMethod
     public void prepareBrowser() {
         driver = new BrowserFactory().getBrowserFactory();
+        LoggerUtility.infoLog("The browser was successfully opened.");
     }
 
-    @AfterMethod
     public void clearBrowser() {
         driver.quit();
+        LoggerUtility.infoLog("The browser was successfully closed.");
     }
 }
