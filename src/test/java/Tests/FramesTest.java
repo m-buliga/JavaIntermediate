@@ -5,11 +5,11 @@ import HelperMethods.JavaScriptHelperMethods;
 import Pages.CommonPage;
 import Pages.FramesPage;
 import Pages.HomePage;
-import ShareData.ShareData;
+import ShareData.Hooks;
 import org.testng.annotations.Test;
 
 
-public class FramesTest extends ShareData {
+public class FramesTest extends Hooks {
 
     public ElementsMethods elementsMethods;
     public JavaScriptHelperMethods javaScriptHelperMethods;

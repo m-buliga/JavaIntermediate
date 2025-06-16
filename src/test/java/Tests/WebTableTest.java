@@ -7,11 +7,11 @@ import Pages.CommonPage;
 import Pages.HomePage;
 import Pages.WebTablePage;
 import PropertyUtility.PropertyUtility;
-import ShareData.ShareData;
+import ShareData.Hooks;
 import org.testng.annotations.Test;
 
 
-public class WebTableTest extends ShareData {
+public class WebTableTest extends Hooks {
 
     public ElementsMethods elementsMethods;
     public JavaScriptHelperMethods javaScriptHelperMethods;

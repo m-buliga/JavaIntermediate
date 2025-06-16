@@ -136,7 +136,7 @@ public class PracticeFormPage extends CommonPage {
 
     public void uploadPicture() {
         File file = new File(getClass().getClassLoader()
-                .getResource("uploadFiles/Demo_QA_Picture.png")
+                .getResource("UploadFiles/Demo_QA_Picture.png")
                 .getFile());
 
         elementsMethods.uploadFile(pictureElement, file.getAbsolutePath());

@@ -7,11 +7,11 @@ import Pages.CommonPage;
 import Pages.HomePage;
 import Pages.PracticeFormPage;
 import PropertyUtility.PropertyUtility;
-import ShareData.ShareData;
+import ShareData.Hooks;
 import org.testng.annotations.Test;
 
 
-public class PracticeFormTest extends ShareData {
+public class PracticeFormTest extends Hooks {
 
     public ElementsMethods elementsMethods;
     public JavaScriptHelperMethods javaScriptHelperMethods;

@@ -2,6 +2,7 @@ package Pages;
 
 import HelperMethods.ElementsMethods;
 import HelperMethods.JavaScriptHelperMethods;
+import Logger.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,6 +28,9 @@ public class CommonPage {
     public void goToDesiredSubMenu(String submenu) {
         WebElement element = elementsMethods.findElementFromListByText(elements, submenu);
         javaScriptHelperMethods.scrollToElement(driver, element);
+        LoggerUtility.infoLog("The user scrolls down the page until the " + submenu +" submenu element is found.");
+
         elementsMethods.clickElement(element);
+        LoggerUtility.infoLog("The user clicks on the submenu element.");
     }
 }
