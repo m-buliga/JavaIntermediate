@@ -13,7 +13,7 @@ public class ConfigFile {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(klass);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            return klass.cast(unmarshaller.unmarshal(new File("src/test/resources/configFile/shareDataConfig.xml")));
+            return klass.cast(unmarshaller.unmarshal(new File("src/test/resources/ConfigFile/shareDataConfig.xml")));
         }
         catch (JAXBException e) {
             System.out.println(e.getMessage());
