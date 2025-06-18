@@ -59,7 +59,6 @@ public class LoggerUtility {
             PrintWriter pw = new PrintWriter(regressionLogsPath + "RegressionLogs.log");
 
             for (String fileName : fileNames) {
-                System.out.println("Reading from " + fileName);
                 File f = new File(dir, fileName);
                 BufferedReader br = new BufferedReader(new FileReader(f));
                 pw.println("Contents of file " + fileName);

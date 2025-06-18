@@ -1,5 +1,6 @@
 package Pages;
 
+import Logger.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,6 +35,7 @@ public class BrowserWindowPage extends CommonPage {
         System.out.println("Textul din noul tab este: " + sampleHeadingElement.getText());
         driver.close();
         driver.switchTo().window(tabList.get(0));
+        LoggerUtility.infoLog("The user opened a new tab.");
     }
 
     public void interactWithWindow() {
@@ -44,6 +46,7 @@ public class BrowserWindowPage extends CommonPage {
         System.out.println("Textul din noul window este: " + sampleHeadingWindowElement.getText());
         driver.close();
         driver.switchTo().window(windowList.get(0));
+        LoggerUtility.infoLog("The user opened a new window.");
     }
 
 }

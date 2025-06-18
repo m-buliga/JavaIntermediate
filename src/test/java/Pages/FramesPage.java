@@ -1,5 +1,6 @@
 package Pages;
 
+import Logger.LoggerUtility;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,11 +25,13 @@ public class FramesPage extends CommonPage {
     public void interactWithFrame1() {
         driver.switchTo().frame(frame1Field);
         System.out.println("Textul din primul frame este: " + sampleFrameHeadingElement.getText());
+        LoggerUtility.infoLog("The user interacted with the 1st frame.");
     }
 
     public void interactWithFrame2() {
         driver.switchTo().frame(frame2Field);
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 200)");
+        LoggerUtility.infoLog("The user interacted with the 2nd frame.");
     }
 
 

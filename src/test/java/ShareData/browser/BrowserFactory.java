@@ -2,11 +2,12 @@ package ShareData.browser;
 
 import ShareData.browser.service.ChromeBrowserService;
 import ShareData.browser.service.EdgeBrowserService;
+import ShareData.browser.service.FirefoxBrowserService;
 import configFile.ConfigFile;
 import configFile.configNode.ConfigurationNode;
 import org.openqa.selenium.WebDriver;
-
 import java.util.Locale;
+
 
 public class BrowserFactory {
 
@@ -32,6 +33,11 @@ public class BrowserFactory {
                 EdgeBrowserService edgeService = new EdgeBrowserService();
                 edgeService.openBrowser(configurationNode.driverConfigNode);
                 return edgeService.getDriver();
+            case BrowserType.BROWSER_FIREFOX:
+
+                FirefoxBrowserService firefoxService = new FirefoxBrowserService();
+                firefoxService.openBrowser(configurationNode.driverConfigNode);
+                return firefoxService.getDriver();
         }
 
         return null;

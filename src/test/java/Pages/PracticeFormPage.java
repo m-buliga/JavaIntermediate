@@ -1,5 +1,6 @@
 package Pages;
 
+import Logger.LoggerUtility;
 import ObjectData.PracticeFormObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -85,6 +86,7 @@ public class PracticeFormPage extends CommonPage {
         elementsMethods.fillElement(emailElement, practiceFormObject.getEmail());
         elementsMethods.fillElement(mobileNumberElement, practiceFormObject.getMobileNumber());
         elementsMethods.fillElement(addressElement, practiceFormObject.getAddress());
+        LoggerUtility.infoLog("The user filled in the first input fields.");
     }
 
     public void selectGender(PracticeFormObject practiceFormObject) {
@@ -99,6 +101,7 @@ public class PracticeFormPage extends CommonPage {
                 elementsMethods.clickElement(otherGenderElement);
                 break;
         }
+        LoggerUtility.infoLog("The user selected the gender.");
     }
 
     public void fillSubject(String subject) {
@@ -109,6 +112,7 @@ public class PracticeFormPage extends CommonPage {
     public void fillSubjectWithList(PracticeFormObject practiceFormObject) {
         elementsMethods.clickElement(subjectsElement);
         elementsMethods.fillMultipleValues(subjectsElement, practiceFormObject.getSubjects());
+        LoggerUtility.infoLog("The user selected the subjects.");
     }
 
     public void selectHobbies(PracticeFormObject practiceFormObject) {
@@ -118,20 +122,24 @@ public class PracticeFormPage extends CommonPage {
         hobbiesElement.add(musicHobbiesElement);
 
         elementsMethods.clickMultipleValues(hobbiesElement, practiceFormObject.getHobbies());
+        LoggerUtility.infoLog("The user selected the hobbies.");
     }
 
     public void selectCalendarDate() {
         elementsMethods.clickElement(dateOfBirthElement);
         elementsMethods.clickElement(dayElement);
+        LoggerUtility.infoLog("The user selected the date of birth.");
     }
 
     public void selectState(PracticeFormObject practiceFormObject) {
         javaScriptHelperMethods.scrollToElement(driver, stateElement);
         elementsMethods.selectDropDownValue(stateElement, stateInputElement, practiceFormObject.getState());
+        LoggerUtility.infoLog("The user selected the state.");
     }
 
     public void selectCity(PracticeFormObject practiceFormObject) {
         elementsMethods.selectDropDownValue(cityElement, cityInputElement, practiceFormObject.getCity());
+        LoggerUtility.infoLog("The user selected the city.");
     }
 
     public void uploadPicture() {
@@ -140,10 +148,12 @@ public class PracticeFormPage extends CommonPage {
                 .getFile());
 
         elementsMethods.uploadFile(pictureElement, file.getAbsolutePath());
+        LoggerUtility.infoLog("The user uploaded a picture.");
     }
 
     public void submitForm() {
         elementsMethods.clickElement(submitButton);
+        LoggerUtility.infoLog("The user submitted the form.");
     }
 
 }
