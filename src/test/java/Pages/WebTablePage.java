@@ -1,5 +1,6 @@
 package Pages;
 
+import Logger.LoggerUtility;
 import ObjectData.WebTableObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,6 +40,7 @@ public class WebTablePage extends CommonPage {
     public void openRegistrationForm() {
         javaScriptHelperMethods.scrollToElement(driver, addButton);
         elementsMethods.clickElement(addButton);
+        LoggerUtility.infoLog("The user opened the registration form.");
     }
 
     public void fillInAllDetails(WebTableObject webTableObject) {
@@ -48,10 +50,12 @@ public class WebTablePage extends CommonPage {
         elementsMethods.fillElement(ageInput, webTableObject.getAge());
         elementsMethods.fillElement(salaryInput, webTableObject.getSalary());
         elementsMethods.fillElement(departmentInput, webTableObject.getDepartment());
+        LoggerUtility.infoLog("The user filled in the registration form info.");
     }
     public void submitRegistrationForm() {
         javaScriptHelperMethods.scrollBy(0, 300);
         elementsMethods.clickElement(submitButton);
+        LoggerUtility.infoLog("The user submitted the registration form.");
     }
 
 }

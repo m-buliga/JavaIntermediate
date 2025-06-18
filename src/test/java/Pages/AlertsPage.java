@@ -1,5 +1,6 @@
 package Pages;
 
+import Logger.LoggerUtility;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,6 +33,7 @@ public class AlertsPage extends CommonPage {
         elementsMethods.clickElement(alertOkElement);
         Alert alertOk = driver.switchTo().alert();
         alertOk.accept();
+        LoggerUtility.infoLog("The user clicked OK button on 1st alert.");
     }
 
     public void explicitAlertsWait() {
@@ -45,6 +47,7 @@ public class AlertsPage extends CommonPage {
         explicitAlertsWait();
         Alert alertDelay = driver.switchTo().alert();
         alertDelay.accept();
+        LoggerUtility.infoLog("The user clicked OK button on delayed alert.");
     }
 
     public void interactWithButtonsConfirmationPrompt() {
@@ -52,6 +55,7 @@ public class AlertsPage extends CommonPage {
         elementsMethods.clickElement(alertConfirmationElement);
         Alert alertConfirmation = driver.switchTo().alert();
         alertConfirmation.dismiss();
+        LoggerUtility.infoLog("The user clicked Cancel button on confirm box alert.");
     }
 
     public void interactWithInputConfirmationPrompt(String value) {
@@ -60,5 +64,6 @@ public class AlertsPage extends CommonPage {
         Alert alertPrompt = driver.switchTo().alert();
         alertPrompt.sendKeys(value);
         alertPrompt.accept();
+        LoggerUtility.infoLog("The user input a value and clicked OK button on prompt box alert.");
     }
 }
