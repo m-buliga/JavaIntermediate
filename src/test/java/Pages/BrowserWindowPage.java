@@ -4,6 +4,9 @@ import Logger.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,8 +42,12 @@ public class BrowserWindowPage extends CommonPage {
     }
 
     public void interactWithWindow() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(newWindowButton));
+
         javaScriptHelperMethods.scrollToElement(driver, newWindowButton);
         elementsMethods.clickElement(newWindowButton);
+
         List<String> windowList = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(windowList.get(1));
         System.out.println("Textul din noul window este: " + sampleHeadingWindowElement.getText());

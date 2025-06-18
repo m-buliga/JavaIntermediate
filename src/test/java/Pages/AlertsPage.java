@@ -43,6 +43,9 @@ public class AlertsPage extends CommonPage {
     }
 
     public void interactWithDelayAlert() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(alertDelayElement));
+
         elementsMethods.clickElement(alertDelayElement);
         explicitAlertsWait();
         Alert alertDelay = driver.switchTo().alert();
