@@ -30,6 +30,8 @@ public class AlertsPage extends CommonPage {
 
 
     public void interactWithAlertsOk() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(alertOkElement));
         elementsMethods.clickElement(alertOkElement);
         Alert alertOk = driver.switchTo().alert();
         alertOk.accept();

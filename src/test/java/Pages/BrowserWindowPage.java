@@ -31,6 +31,9 @@ public class BrowserWindowPage extends CommonPage {
 
 
     public void interactWithTabs() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(newTabButton));
+
         elementsMethods.clickElement(newTabButton);
         // returns all tabs open and then checks the newly opened one
         List<String> tabList = new ArrayList<>(driver.getWindowHandles());
