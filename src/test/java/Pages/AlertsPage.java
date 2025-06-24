@@ -30,9 +30,6 @@ public class AlertsPage extends CommonPage {
 
 
     public void interactWithAlertsOk() {
-        /*WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(alertOkElement));*/
-
         elementsMethods.waitVisibilityElement(alertOkElement);
         elementsMethods.clickElement(alertOkElement);
         Alert alertOk = driver.switchTo().alert();
@@ -47,9 +44,6 @@ public class AlertsPage extends CommonPage {
     }
 
     public void interactWithDelayAlert() {
- /*       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(alertDelayElement));*/
-
         elementsMethods.waitVisibilityElement(alertDelayElement);
         elementsMethods.clickElement(alertDelayElement);
         explicitAlertsWait();
