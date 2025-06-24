@@ -1,5 +1,7 @@
 package Tests;
 
+import ExtentUtility.ExtentUtility;
+import ExtentUtility.ReportStep;
 import HelperMethods.ElementsMethods;
 import HelperMethods.JavaScriptHelperMethods;
 import Pages.AlertsPage;
@@ -27,15 +29,21 @@ public class AlertsTest extends Hooks {
         alertsPage = new AlertsPage(getDriver());
 
         homePage.goToDesiredMenu("Alerts, Frame & Windows");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user enters on Alerts, Frame & Windows menu.");
 
         commonPage.goToDesiredSubMenu("Alerts");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user enters on Alerts sub-menu.");
 
         alertsPage.interactWithAlertsOk();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user clicked OK button on 1st alert.");
 
         alertsPage.interactWithDelayAlert();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user clicked OK button on delayed alert.");
 
         alertsPage.interactWithButtonsConfirmationPrompt();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user dismissed the alert by clicking Cancel button.");
 
         alertsPage.interactWithInputConfirmationPrompt("My name");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user input a value and clicked OK button on prompt box alert.");
     }
 }
