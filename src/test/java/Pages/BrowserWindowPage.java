@@ -4,9 +4,6 @@ import Logger.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +28,6 @@ public class BrowserWindowPage extends CommonPage {
 
 
     public void interactWithTabs() {
-       /* WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(newTabButton));*/
-
         elementsMethods.waitVisibilityElement(newTabButton);
         elementsMethods.clickElement(newTabButton);
         // returns all tabs open and then checks the newly opened one
@@ -46,8 +40,6 @@ public class BrowserWindowPage extends CommonPage {
     }
 
     public void interactWithWindow() {
-        /*WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(newWindowButton));*/
         elementsMethods.waitVisibilityElement(newWindowButton);
 
         javaScriptHelperMethods.scrollToElement(driver, newWindowButton);
