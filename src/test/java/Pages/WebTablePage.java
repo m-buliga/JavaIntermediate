@@ -45,12 +45,17 @@ public class WebTablePage extends CommonPage {
 
     public void fillInAllDetails(WebTableObject webTableObject) {
         elementsMethods.fillElement(firstNameInput, webTableObject.getFirstName());
+        LoggerUtility.infoLog("The user filled in the First Name input with " + webTableObject.getFirstName() + " value.");
         elementsMethods.fillElement(lastNameInput, webTableObject.getLastName());
+        LoggerUtility.infoLog("The user filled in the Last Name input with " + webTableObject.getLastName() + " value.");
         elementsMethods.fillElement(emailInput, webTableObject.getEmail());
+        LoggerUtility.infoLog("The user filled in the Email input with " + webTableObject.getEmail() + " value.");
         elementsMethods.fillElement(ageInput, webTableObject.getAge());
+        LoggerUtility.infoLog("The user filled in the Age input with " + webTableObject.getAge() + " value.");
         elementsMethods.fillElement(salaryInput, webTableObject.getSalary());
+        LoggerUtility.infoLog("The user filled in the Salary input with " + webTableObject.getSalary() + " value.");
         elementsMethods.fillElement(departmentInput, webTableObject.getDepartment());
-        LoggerUtility.infoLog("The user filled in the registration form info.");
+        LoggerUtility.infoLog("The user filled in the Department input with " + webTableObject.getDepartment() + " value.");
     }
     public void submitRegistrationForm() {
         javaScriptHelperMethods.scrollBy(0, 300);

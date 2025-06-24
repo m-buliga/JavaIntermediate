@@ -1,5 +1,7 @@
 package Tests;
 
+import ExtentUtility.ExtentUtility;
+import ExtentUtility.ReportStep;
 import HelperMethods.ElementsMethods;
 import HelperMethods.JavaScriptHelperMethods;
 import ObjectData.PracticeFormObject;
@@ -33,25 +35,36 @@ public class PracticeFormTest extends Hooks {
         practiceFormObject = new PracticeFormObject(propertyUtility.getData());
 
         homePage.goToDesiredMenu("Forms");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user enters on Forms menu.");
 
         commonPage.goToDesiredSubMenu("Practice Form");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user enters on Practice Form sub-menu.");
 
         practiceFormPage.fillInFirstInputs(practiceFormObject);
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user filled in the first input fields.");
 
         practiceFormPage.selectGender(practiceFormObject);
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user selected the gender.");
 
         practiceFormPage.fillSubjectWithList(practiceFormObject);
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user selected the subjects.");
 
         practiceFormPage.selectHobbies(practiceFormObject);
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user selected the hobbies.");
 
         practiceFormPage.uploadPicture();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user uploaded the picture.");
 
         practiceFormPage.selectCalendarDate();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user selected the date of birth.");
 
         practiceFormPage.selectState(practiceFormObject);
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user selected the state.");
 
         practiceFormPage.selectCity(practiceFormObject);
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user selected the city.");
 
         practiceFormPage.submitForm();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user submitted the form.");
     }
 }

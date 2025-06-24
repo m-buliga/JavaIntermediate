@@ -1,5 +1,7 @@
 package Tests;
 
+import ExtentUtility.ExtentUtility;
+import ExtentUtility.ReportStep;
 import HelperMethods.ElementsMethods;
 import HelperMethods.JavaScriptHelperMethods;
 import ObjectData.WebTableObject;
@@ -33,14 +35,19 @@ public class WebTableTest extends Hooks {
         webTableObject = new WebTableObject(propertyUtility.getData());
 
         homePage.goToDesiredMenu("Elements");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user enters on Elements menu.");
 
         commonPage.goToDesiredSubMenu("Web Tables");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user enters on Web Tables sub-menu.");
 
         webTablePage.openRegistrationForm();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user opened the registration form.");
 
         webTablePage.fillInAllDetails(webTableObject);
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user filled in the registration form info.");
 
         webTablePage.submitRegistrationForm();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user submitted the registration form.");
     }
 
 }

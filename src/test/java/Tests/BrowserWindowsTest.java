@@ -1,5 +1,7 @@
 package Tests;
 
+import ExtentUtility.ExtentUtility;
+import ExtentUtility.ReportStep;
 import HelperMethods.ElementsMethods;
 import HelperMethods.JavaScriptHelperMethods;
 import Pages.BrowserWindowPage;
@@ -27,11 +29,15 @@ public class BrowserWindowsTest extends Hooks {
         browserWindowPage = new BrowserWindowPage(getDriver());
 
         homePage.goToDesiredMenu("Alerts, Frame & Windows");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user enters on Alerts, Frame & Windows menu.");
 
         commonPage.goToDesiredSubMenu("Browser Windows");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user enters on Browser Windows sub-menu.");
 
         browserWindowPage.interactWithTabs();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user opened a new tab.");
 
         browserWindowPage.interactWithWindow();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, "The user opened a new window.");
     }
 }
