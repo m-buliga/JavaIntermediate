@@ -31,5 +31,6 @@ public class Exception1 {
         } finally {
             System.out.println("Line being executed regardless whether an exception is thrown.");
         }
+
     }
 }

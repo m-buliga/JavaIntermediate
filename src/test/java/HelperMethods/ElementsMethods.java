@@ -46,13 +46,13 @@ public class ElementsMethods {
 
     public void fillWithActions(WebElement element, String value) {
         actions.sendKeys(value).perform();
-        waitVisibilityElement(element);
+        waitForVisibilityOfElement(element, 10);
         actions.sendKeys(Keys.ENTER).perform();
     }
 
-    public void waitVisibilityElement(WebElement element) {
+    public void waitForVisibilityOfElement(WebElement element, int seconds) {
         // definim un wait explicit care asteapta pana un anume element e vizibil
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
