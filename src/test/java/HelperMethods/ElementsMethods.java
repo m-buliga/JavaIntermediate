@@ -1,5 +1,6 @@
 package HelperMethods;
 
+import Logger.LoggerUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -30,9 +32,21 @@ public class ElementsMethods {
     }*/
 
     public void fillElement(WebElement element, Object value) {
-        element.sendKeys(String.valueOf(value));
-    }
+        try {
+            waitForVisibilityOfElement(element);
+            LoggerUtility.infoLog("Waiting for element " + element.toString() + " to be visible.");
 
+            element.clear();
+            LoggerUtility.infoLog("Clearing the element " + element.toString());
+
+            element.sendKeys(String.valueOf(value));
+            LoggerUtility.infoLog("Filling the element " + element.toString() + " with value " + value);
+
+        } catch (Exception e) {
+            LoggerUtility.errorLog("Element " + element.toString() + " couldn't be filled. Error: " + e.getMessage());
+            throw new RuntimeException("Filling element " + element.toString() + " failed.");
+        }
+    }
 
 
     public WebElement findElementFromListByText(List<WebElement> elementsList, String value) {
@@ -46,11 +60,11 @@ public class ElementsMethods {
 
     public void fillWithActions(WebElement element, String value) {
         actions.sendKeys(value).perform();
-        waitVisibilityElement(element);
+        waitForVisibilityOfElement(element);
         actions.sendKeys(Keys.ENTER).perform();
     }
 
-    public void waitVisibilityElement(WebElement element) {
+    public void waitForVisibilityOfElement(WebElement element) {
         // definim un wait explicit care asteapta pana un anume element e vizibil
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(element));
