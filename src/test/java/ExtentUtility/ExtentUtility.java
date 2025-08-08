@@ -80,7 +80,7 @@ public class ExtentUtility {
         return null;
     }
 
-    // motoda care sa genereze rapotul final
+    // motoda care sa genereze raportul final
     public static synchronized void generateReport() {
         extent.flush();
     }

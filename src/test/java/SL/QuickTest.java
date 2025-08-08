@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class QuickTest {
     public static void main(String[] args) {
-        String path = "C:\\Users\\CrBuliga\\SeleniumProject\\src\\test\\resources\\InputData\\SLPracticeData.properties";
+        String path = "src/test/resources/InputData/SLPracticeData.properties";
         Map<String, User> users = LoadUsers.loadUsers(path);
 
         for (Map.Entry<String, User> entry : users.entrySet()) {
