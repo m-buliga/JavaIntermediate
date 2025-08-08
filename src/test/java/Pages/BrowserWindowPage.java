@@ -28,7 +28,7 @@ public class BrowserWindowPage extends CommonPage {
 
 
     public void interactWithTabs() {
-        elementsMethods.waitVisibilityElement(newTabButton);
+        elementsMethods.waitForVisibilityOfElement(newTabButton);
         elementsMethods.clickElement(newTabButton);
         // returns all tabs open and then checks the newly opened one
         List<String> tabList = new ArrayList<>(driver.getWindowHandles());
@@ -40,7 +40,7 @@ public class BrowserWindowPage extends CommonPage {
     }
 
     public void interactWithWindow() {
-        elementsMethods.waitVisibilityElement(newWindowButton);
+        elementsMethods.waitForVisibilityOfElement(newWindowButton);
 
         javaScriptHelperMethods.scrollToElement(driver, newWindowButton);
         elementsMethods.clickElement(newWindowButton);
