@@ -10,9 +10,9 @@ import java.util.List;
 public class HomePage extends CommonPage {
 
 
-    // identificam web elements specifice pentru aceasta pagina
+    // Identificam web elements specifice pentru aceasta pagina
     @FindBy(xpath = "//h5")
-    // cream metode specifce pentru aceasta pagina
+    // Cream metode specifce pentru aceasta pagina
     private List<WebElement> elements;
 
     public HomePage(WebDriver driver) {
