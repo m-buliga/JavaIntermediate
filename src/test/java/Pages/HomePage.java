@@ -24,7 +24,7 @@ public class HomePage extends CommonPage {
 
     public void goToDesiredMenu(String menu) {
         WebElement element = elementsMethods.findElementFromListByText(elements, menu);
-        javaScriptHelperMethods.scrollToElement(driver, element);
+        javaScriptHelperMethods.scrollToElement(element);
         LoggerUtility.infoLog("The user scrolls down the page until the " + menu +" menu element is found.");
 
         elementsMethods.clickElement(element);

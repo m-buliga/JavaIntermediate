@@ -132,7 +132,7 @@ public class PracticeFormPage extends CommonPage {
     }
 
     public void selectState(PracticeFormObject practiceFormObject) {
-        javaScriptHelperMethods.scrollToElement(driver, stateElement);
+        javaScriptHelperMethods.scrollToElement(stateElement);
         elementsMethods.selectDropDownValue(stateElement, stateInputElement, practiceFormObject.getState());
         LoggerUtility.infoLog("The user selected the state.");
     }

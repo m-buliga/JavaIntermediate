@@ -27,7 +27,7 @@ public class CommonPage {
 
     public void goToDesiredSubMenu(String submenu) {
         WebElement element = elementsMethods.findElementFromListByText(elements, submenu);
-        javaScriptHelperMethods.scrollToElement(driver, element);
+        javaScriptHelperMethods.scrollToElement(element);
         LoggerUtility.infoLog("The user scrolls down the page until the " + submenu +" submenu element is found.");
 
         elementsMethods.clickElement(element);

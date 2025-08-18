@@ -53,7 +53,7 @@ public class AlertsPage extends CommonPage {
     }
 
     public void interactWithButtonsConfirmationPrompt() {
-        javaScriptHelperMethods.scrollToElement(driver, alertConfirmationElement);
+        javaScriptHelperMethods.scrollToElement(alertConfirmationElement);
         elementsMethods.clickElement(alertConfirmationElement);
         Alert alertConfirmation = driver.switchTo().alert();
         alertConfirmation.dismiss();
@@ -61,7 +61,7 @@ public class AlertsPage extends CommonPage {
     }
 
     public void interactWithInputConfirmationPrompt(String value) {
-        javaScriptHelperMethods.scrollToElement(driver, alertPromptElement);
+        javaScriptHelperMethods.scrollToElement(alertPromptElement);
         elementsMethods.clickElement(alertPromptElement);
         Alert alertPrompt = driver.switchTo().alert();
         alertPrompt.sendKeys(value);

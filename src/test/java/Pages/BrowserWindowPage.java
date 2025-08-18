@@ -42,7 +42,7 @@ public class BrowserWindowPage extends CommonPage {
     public void interactWithWindow() {
         elementsMethods.waitForVisibilityOfElement(newWindowButton, 15);
 
-        javaScriptHelperMethods.scrollToElement(driver, newWindowButton);
+        javaScriptHelperMethods.scrollToElement(newWindowButton);
         elementsMethods.clickElement(newWindowButton);
 
         List<String> windowList = new ArrayList<>(driver.getWindowHandles());
