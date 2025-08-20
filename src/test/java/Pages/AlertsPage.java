@@ -52,22 +52,28 @@ public class AlertsPage extends CommonPage {
     }
 
     public void fluentAlertsWait() {
+        boolean ci = Boolean.parseBoolean(System.getProperty("ciCd","false"));
+        long timeout = ci ? 20 : 10;
+        long poll    = ci ? 1  : 2;
+
         Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(10))
-                .pollingEvery(Duration.ofSeconds(2))
+                .withTimeout(Duration.ofSeconds(timeout))
+                .pollingEvery(Duration.ofSeconds(poll))
                 .ignoring(NoAlertPresentException.class);
 
         wait.until(ExpectedConditions.alertIsPresent());
     }
 
+
     public void interactWithDelayAlert() {
         removeBannersIfPresent();
 
         elementsMethods.waitForVisibilityOfElement(alertDelayElement);
-        LoggerUtility.infoLog("Butonul click pt delayed alert e vizibil");
+        LoggerUtility.infoLog("Delayed alert button is clickable.");
         elementsMethods.clickElement(alertDelayElement);
-        LoggerUtility.infoLog("Butonul click pt delayed alert a fost clicked");
+        LoggerUtility.infoLog("Clicking delayed alert button, waiting for alert...");
         fluentAlertsWait();
+        LoggerUtility.infoLog("Alert appeared, proceeding to accept.");
         Alert alertDelay = driver.switchTo().alert();
         alertDelay.accept();
         LoggerUtility.infoLog("The user clicked OK button on delayed alert.");
