@@ -45,3 +45,10 @@ jobs:
         path: |
           target/extentReports
           target/logs/RegressionLogs.log
+
+    - name: Upload surefire-reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: surefire-reports
+        path: target/surefire-reports
