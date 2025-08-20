@@ -2,6 +2,7 @@ package Pages;
 
 import Logger.LoggerUtility;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,6 +31,17 @@ public class AlertsPage extends CommonPage {
     @FindBy(id = "promtButton")
     private WebElement alertPromptElement;
 
+    private void removeBannersIfPresent() {
+        try {
+            ((JavascriptExecutor) driver).executeScript(
+                    "const a=document.querySelector('#fixedban'); if(a) a.remove();" +
+                            "const f=document.querySelector('footer'); if(f) f.remove();" +
+                            "const c=document.querySelector('.fc-consent-root'); if(c) c.remove();"
+            );
+        } catch (Exception ignored) {}
+    }
+
+
 
     public void interactWithAlertsOk() {
         elementsMethods.waitForVisibilityOfElement(alertOkElement);
@@ -49,8 +61,12 @@ public class AlertsPage extends CommonPage {
     }
 
     public void interactWithDelayAlert() {
+        removeBannersIfPresent();
+
         elementsMethods.waitForVisibilityOfElement(alertDelayElement);
+        LoggerUtility.infoLog("Butonul click pt delayed alert e vizibil");
         elementsMethods.clickElement(alertDelayElement);
+        LoggerUtility.infoLog("Butonul click pt delayed alert a fost clicked");
         fluentAlertsWait();
         Alert alertDelay = driver.switchTo().alert();
         alertDelay.accept();
