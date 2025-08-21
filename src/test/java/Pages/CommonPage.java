@@ -26,7 +26,7 @@ public class CommonPage {
     private List<WebElement> elements;
 
     public void goToDesiredSubMenu(String submenu) {
-        JavaScriptHelperMethods.removeBannersIfPresent(driver);
+        //JavaScriptHelperMethods.removeBannersIfPresent(driver);
 
         WebElement element = elementsMethods.findElementFromListByText(elements, submenu);
         javaScriptHelperMethods.scrollToElement(driver, element);
