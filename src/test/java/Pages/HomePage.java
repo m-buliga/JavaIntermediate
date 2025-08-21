@@ -24,7 +24,7 @@ public class HomePage extends CommonPage {
     private WebElement consentElement;*/
 
     public void goToDesiredMenu(String menu) {
-        JavaScriptHelperMethods.removeBannersIfPresent(driver);
+        //JavaScriptHelperMethods.removeBannersIfPresent(driver);
 
         WebElement element = elementsMethods.findElementFromListByText(elements, menu);
         javaScriptHelperMethods.scrollToElement(driver, element);
