@@ -1,5 +1,6 @@
 package HelperMethods;
 
+import Logger.LoggerUtility;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,6 +31,7 @@ public class JavaScriptHelperMethods {
     }
 
     public static void removeBannersIfPresent(WebDriver driver) {
+        LoggerUtility.infoLog("All banners (if any) are removed.");
         try {
             ((JavascriptExecutor) JavaScriptHelperMethods.driver).executeScript(
                     "const a=document.querySelector('#fixedban'); if(a) a.remove();" +

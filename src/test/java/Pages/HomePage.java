@@ -1,5 +1,6 @@
 package Pages;
 
+import HelperMethods.JavaScriptHelperMethods;
 import Logger.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,6 +24,8 @@ public class HomePage extends CommonPage {
     private WebElement consentElement;*/
 
     public void goToDesiredMenu(String menu) {
+        JavaScriptHelperMethods.removeBannersIfPresent(driver);
+
         WebElement element = elementsMethods.findElementFromListByText(elements, menu);
         javaScriptHelperMethods.scrollToElement(driver, element);
         LoggerUtility.infoLog("The user scrolls down the page until the " + menu +" menu element is found.");
