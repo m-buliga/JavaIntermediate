@@ -1,5 +1,6 @@
 package Pages;
 
+import HelperMethods.JavaScriptHelperMethods;
 import Logger.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,6 +41,7 @@ public class BrowserWindowPage extends CommonPage {
     }
 
     public void interactWithWindow() {
+        JavaScriptHelperMethods.removeBannersIfPresent(driver);
         elementsMethods.waitForVisibilityOfElement(newWindowButton);
 
         javaScriptHelperMethods.scrollToElement(driver, newWindowButton);

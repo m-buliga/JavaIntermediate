@@ -1,8 +1,8 @@
 package Pages;
 
+import HelperMethods.JavaScriptHelperMethods;
 import Logger.LoggerUtility;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,17 +31,6 @@ public class AlertsPage extends CommonPage {
     @FindBy(id = "promtButton")
     private WebElement alertPromptElement;
 
-    private void removeBannersIfPresent() {
-        try {
-            ((JavascriptExecutor) driver).executeScript(
-                    "const a=document.querySelector('#fixedban'); if(a) a.remove();" +
-                            "const f=document.querySelector('footer'); if(f) f.remove();" +
-                            "const c=document.querySelector('.fc-consent-root'); if(c) c.remove();"
-            );
-        } catch (Exception ignored) {}
-    }
-
-
 
     public void interactWithAlertsOk() {
         elementsMethods.waitForVisibilityOfElement(alertOkElement);
@@ -66,7 +55,7 @@ public class AlertsPage extends CommonPage {
 
 
     public void interactWithDelayAlert() {
-        removeBannersIfPresent();
+        JavaScriptHelperMethods.removeBannersIfPresent(driver);
 
         elementsMethods.waitForVisibilityOfElement(alertDelayElement);
         LoggerUtility.infoLog("Delayed alert button is clickable.");
