@@ -1,5 +1,6 @@
 package Pages;
 
+import HelperMethods.JavaScriptHelperMethods;
 import Logger.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,9 +11,9 @@ import java.util.List;
 public class HomePage extends CommonPage {
 
 
-    // identificam web elements specifice pentru aceasta pagina
+    // Identificam web elements specifice pentru aceasta pagina
     @FindBy(xpath = "//h5")
-    // cream metode specifce pentru aceasta pagina
+    // Cream metode specifce pentru aceasta pagina
     private List<WebElement> elements;
 
     public HomePage(WebDriver driver) {
@@ -23,6 +24,8 @@ public class HomePage extends CommonPage {
     private WebElement consentElement;*/
 
     public void goToDesiredMenu(String menu) {
+        //JavaScriptHelperMethods.removeBannersIfPresent(driver);
+
         WebElement element = elementsMethods.findElementFromListByText(elements, menu);
         javaScriptHelperMethods.scrollToElement(element);
         LoggerUtility.infoLog("The user scrolls down the page until the " + menu +" menu element is found.");

@@ -1,6 +1,8 @@
 package HelperMethods;
 
+import Logger.LoggerUtility;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,7 +32,20 @@ public class ElementsMethods {
     }*/
 
     public void fillElement(WebElement element, Object value) {
-        element.sendKeys(String.valueOf(value));
+        try {
+            waitForVisibilityOfElement(element);
+            LoggerUtility.infoLog("Waiting for element " + element.toString() + " to be visible.");
+
+            element.clear();
+            LoggerUtility.infoLog("Clearing the element " + element.toString());
+
+            element.sendKeys(String.valueOf(value));
+            LoggerUtility.infoLog("Filling the element " + element.toString() + " with value " + value);
+
+        } catch (Exception e) {
+            LoggerUtility.errorLog("Element " + element.toString() + " couldn't be filled. Error: " + e.getMessage());
+            throw new RuntimeException("Filling element " + element.toString() + " failed.");
+        }
     }
 
 
@@ -46,14 +61,20 @@ public class ElementsMethods {
 
     public void fillWithActions(WebElement element, String value) {
         actions.sendKeys(value).perform();
-        waitForVisibilityOfElement(element, 10);
+        waitForVisibilityOfElement(element);
         actions.sendKeys(Keys.ENTER).perform();
     }
 
-    public void waitForVisibilityOfElement(WebElement element, int seconds) {
+    public void waitForVisibilityOfElement(WebElement element) {
+
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({block:'center', inline:'center'});",
+                element
+        );
+
         // definim un wait explicit care asteapta pana un anume element e vizibil
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
-        wait.until(ExpectedConditions.visibilityOf(element));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public void fillMultipleValues(WebElement element, List<String> list) {

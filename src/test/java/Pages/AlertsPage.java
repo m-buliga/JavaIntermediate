@@ -6,7 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import java.time.Duration;
 
 
@@ -30,30 +31,43 @@ public class AlertsPage extends CommonPage {
 
 
     public void interactWithAlertsOk() {
-        elementsMethods.waitForVisibilityOfElement(alertOkElement, 15);
+        elementsMethods.waitForVisibilityOfElement(alertOkElement);
         elementsMethods.clickElement(alertOkElement);
         Alert alertOk = driver.switchTo().alert();
         alertOk.accept();
         LoggerUtility.infoLog("The user clicked OK button on 1st alert.");
     }
 
-    public void explicitAlertsWait() {
-        // definim un wait explicit care asteapta dupa alerta
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public void fluentAlertsWait() {
+        boolean ci = Boolean.parseBoolean(System.getProperty("ciCd","false"));
+        long timeout = ci ? 20 : 10;
+        long poll    = ci ? 1  : 2;
+
+        Wait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(timeout))
+                .pollingEvery(Duration.ofSeconds(poll))
+                .ignoring(NoAlertPresentException.class);
+
         wait.until(ExpectedConditions.alertIsPresent());
     }
 
+
     public void interactWithDelayAlert() {
-        elementsMethods.waitForVisibilityOfElement(alertDelayElement, 10);
+        JavaScriptHelperMethods.removeBannersIfPresent(driver);
+
+        elementsMethods.waitForVisibilityOfElement(alertDelayElement);
+        LoggerUtility.infoLog("Delayed alert button is clickable.");
         elementsMethods.clickElement(alertDelayElement);
-        explicitAlertsWait();
+        LoggerUtility.infoLog("Clicking delayed alert button, waiting for alert...");
+        fluentAlertsWait();
+        LoggerUtility.infoLog("Alert appeared, proceeding to accept.");
         Alert alertDelay = driver.switchTo().alert();
         alertDelay.accept();
         LoggerUtility.infoLog("The user clicked OK button on delayed alert.");
     }
 
     public void interactWithButtonsConfirmationPrompt() {
-        javaScriptHelperMethods.scrollToElement(alertConfirmationElement);
+        javaScriptHelperMethods.scrollToElement(driver, alertConfirmationElement);
         elementsMethods.clickElement(alertConfirmationElement);
         Alert alertConfirmation = driver.switchTo().alert();
         alertConfirmation.dismiss();
@@ -61,7 +75,7 @@ public class AlertsPage extends CommonPage {
     }
 
     public void interactWithInputConfirmationPrompt(String value) {
-        javaScriptHelperMethods.scrollToElement(alertPromptElement);
+        javaScriptHelperMethods.scrollToElement(driver, alertPromptElement);
         elementsMethods.clickElement(alertPromptElement);
         Alert alertPrompt = driver.switchTo().alert();
         alertPrompt.sendKeys(value);

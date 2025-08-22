@@ -1,5 +1,6 @@
 package HelperMethods;
 
+import Logger.LoggerUtility;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,7 @@ import java.time.Duration;
 
 
 public class JavaScriptHelperMethods {
-    WebDriver driver;
+    static WebDriver driver;
     JavascriptExecutor jsExecutor;
 
     public JavaScriptHelperMethods(WebDriver driver) {
@@ -27,6 +28,17 @@ public class JavaScriptHelperMethods {
 
     public void scrollBy(int x, int y) {
         jsExecutor.executeScript("window.scrollBy(arguments[0], arguments[1]);", x, y);
+    }
+
+    public static void removeBannersIfPresent(WebDriver driver) {
+        LoggerUtility.infoLog("All banners (if any) are removed.");
+        try {
+            ((JavascriptExecutor) JavaScriptHelperMethods.driver).executeScript(
+                    "const a=document.querySelector('#fixedban'); if(a) a.remove();" +
+                            "const f=document.querySelector('footer'); if(f) f.remove();" +
+                            "const c=document.querySelector('.fc-consent-root'); if(c) c.remove();"
+            );
+        } catch (Exception ignored) {}
     }
 
 }

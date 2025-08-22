@@ -1,5 +1,6 @@
 package Pages;
 
+import HelperMethods.JavaScriptHelperMethods;
 import Logger.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,7 +29,7 @@ public class BrowserWindowPage extends CommonPage {
 
 
     public void interactWithTabs() {
-        elementsMethods.waitForVisibilityOfElement(newTabButton, 15);
+        elementsMethods.waitForVisibilityOfElement(newTabButton);
         elementsMethods.clickElement(newTabButton);
         // returns all tabs open and then checks the newly opened one
         List<String> tabList = new ArrayList<>(driver.getWindowHandles());
@@ -40,9 +41,10 @@ public class BrowserWindowPage extends CommonPage {
     }
 
     public void interactWithWindow() {
-        elementsMethods.waitForVisibilityOfElement(newWindowButton, 15);
+        JavaScriptHelperMethods.removeBannersIfPresent(driver);
+        elementsMethods.waitForVisibilityOfElement(newWindowButton);
 
-        javaScriptHelperMethods.scrollToElement(newWindowButton);
+        javaScriptHelperMethods.scrollToElement(driver, newWindowButton);
         elementsMethods.clickElement(newWindowButton);
 
         List<String> windowList = new ArrayList<>(driver.getWindowHandles());

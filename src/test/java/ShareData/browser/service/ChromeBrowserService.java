@@ -15,8 +15,9 @@ public class ChromeBrowserService implements BrowserService {
     public void openBrowser(DriverConfigNode driverConfigNode) {
         ChromeOptions options = (ChromeOptions) getBrowserOptions(driverConfigNode);
         driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ZERO);
         driver.get(driverConfigNode.url);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Override
@@ -29,6 +30,11 @@ public class ChromeBrowserService implements BrowserService {
         options.addArguments(driverConfigNode.resolution);
         options.addArguments(driverConfigNode.gpu);
         options.addArguments(driverConfigNode.extensions);
+
+        if (Boolean.parseBoolean(System.getProperty("ciCd", "false"))) {
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+        }
         return options;
     }
 
