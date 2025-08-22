@@ -7,19 +7,18 @@ import org.openqa.selenium.WebDriver;
 
 public class ShareData {
 
-    private WebDriver driver;
-
     public WebDriver getDriver() {
-        return driver;
+        return DriverManager.get();
     }
 
     public void prepareBrowser() {
-        driver = new BrowserFactory().getBrowserFactory();
+        WebDriver driver = new BrowserFactory().getBrowserFactory();
+        DriverManager.set(driver);
         LoggerUtility.infoLog("The browser was successfully opened.");
     }
 
     public void clearBrowser() {
-        driver.quit();
+        DriverManager.quit();
         LoggerUtility.infoLog("The browser was successfully closed.");
     }
 }
