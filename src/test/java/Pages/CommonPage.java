@@ -29,7 +29,7 @@ public class CommonPage {
         //JavaScriptHelperMethods.removeBannersIfPresent(driver);
 
         WebElement element = elementsMethods.findElementFromListByText(elements, submenu);
-        javaScriptHelperMethods.scrollToElement(element);
+        javaScriptHelperMethods.scrollToElement(driver, element);
         LoggerUtility.infoLog("The user scrolls down the page until the " + submenu +" submenu element is found.");
 
         elementsMethods.clickElement(element);

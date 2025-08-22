@@ -1,7 +1,9 @@
 package Pages;
 
+import HelperMethods.JavaScriptHelperMethods;
 import Logger.LoggerUtility;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

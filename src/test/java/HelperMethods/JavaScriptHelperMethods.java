@@ -18,8 +18,8 @@ public class JavaScriptHelperMethods {
         this.jsExecutor = (JavascriptExecutor) driver;
     }
 
-    public void scrollToElement(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public void scrollToElement(WebDriver driver, WebElement element) {
+        WebDriverWait wait = new WebDriverWait(JavaScriptHelperMethods.driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(element));
 
         jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
